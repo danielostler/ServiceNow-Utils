@@ -1,4 +1,8 @@
-/** ScriptSync / VS Code token feature – stub for initial build. TODO: Port from inject.js */
+/** ScriptSync / VS Code feature – triggers sync via background service worker. */
 export function init(): void {
-  // TODO
+  document.dispatchEvent(
+    new CustomEvent('snutils-event', {
+      detail: { event: 'scriptsync', command: '' },
+    })
+  );
 }

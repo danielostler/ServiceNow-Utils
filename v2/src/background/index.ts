@@ -125,7 +125,7 @@ let cookieStoreId = '';
 
 function openTool(
   tool: string,
-  sourceTab: chrome.tabs.Tab,
+  _sourceTab: chrome.tabs.Tab,
   params: Record<string, string> = {}
 ): void {
   const qs = new URLSearchParams(params).toString();
@@ -168,7 +168,8 @@ type BackgroundMessage =
 
 chrome.runtime.onMessage.addListener(
   (message: BackgroundMessage, sender, sendResponse) => {
-    if (sender.tab?.cookieStoreId) cookieStoreId = sender.tab.cookieStoreId;
+    const senderTab = sender.tab as (chrome.tabs.Tab & { cookieStoreId?: string }) | undefined;
+    if (senderTab?.cookieStoreId) cookieStoreId = senderTab.cookieStoreId;
     if (sender.tab?.index !== undefined) lastTabIndex = sender.tab.index;
 
     // ── Changelog badge ───────────────────────────────────────────────────
