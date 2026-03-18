@@ -1,4 +1,8 @@
-/** Pop in/out classic UI – stub. TODO: Port from inject.js */
+/** Pop in/out classic UI – dispatches event to background via content script relay. */
 export function toggle(): void {
-  // TODO
+  document.dispatchEvent(
+    new CustomEvent('snutils-event', {
+      detail: { event: 'pop' },
+    })
+  );
 }
