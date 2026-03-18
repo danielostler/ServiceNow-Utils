@@ -8,6 +8,8 @@ publish/*
 node_modules/*
 package.json
 package-lock.json
+!v2/package.json
+!v2/package-lock.json
 admin/*
 !publish/*.json
 .vscode/settings.json
